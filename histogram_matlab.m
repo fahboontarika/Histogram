@@ -1,4 +1,4 @@
-%% imread %%
+%% imread
 clc;clear all
 img = imread('jpg3.jpg'); %for jpg
 %img = imread('bmp3.bmp'); %for bmp
@@ -6,11 +6,11 @@ img = imread('jpg3.jpg'); %for jpg
 %img = imread('png3.png'); %for png
 %img = imread('gif3.gif'); %for gif
 
-%% RGB to Grayscale %%
+%% RGB to Grayscale 
 g_img = rgb2gray(img);
 %g_img = img;  %change for gif only
 
-%% histogram and cdf %%
+%% histogram and cdf 
 a = size(g_img,1);
 b = size(g_img,2);
 f = zeros(1,256); %histogram
@@ -30,13 +30,13 @@ for p = 1:256
     end
 end
 
-%% Histogram Equalization %%
+%% Histogram Equalization 
 Heq = zeros(1,256);
 for p = 1:256
     Heq(1,p) = round(((cdf(1,p) - min(cdf))/((a*b) - min(cdf)))*255);
 end
 
-%% Convert to image %%
+%% Convert to image 
 new_img = zeros(a,b);
 for i=1:a
     for j=1:b
@@ -66,7 +66,7 @@ for p = 1:256
     end
 end
 
-%% Display %% for compare original and Equalize image
+%% Display for compare original and Equalize image
 subplot(321);
 imshow(g_img);
 title('Original image')
